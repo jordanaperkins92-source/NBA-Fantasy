@@ -1,1 +1,11 @@
-
+Player,Team,Pos,PTS,REB,AST,STL,BLK,3PM,FG%,FT%
+Luka Doncic,DAL,PG,28.5,8.9,8.1,1.2,0.5,1.2,47.5,74.0
+Giannis Antetokounmpo,MIL,PF,29.0,11.3,5.8,1.1,1.3,0.6,55.2,72.5
+Kevin Durant,PHO,SF,27.8,7.1,5.2,0.8,1.0,2.1,51.8,88.3
+Jalen Brunson,NYK,PG,25.3,3.6,4.7,0.7,0.2,1.5,45.1,82.0
+Jayson Tatum,BOS,SF,26.7,7.0,4.1,1.1,0.8,2.6,45.9,86.7
+Fred VanVleet,HOU,PG,17.9,3.1,6.8,1.0,0.2,2.1,43.5,86.1
+Austin Reaves,MIN,SG,15.4,3.4,3.6,0.9,0.2,1.6,46.0,80.5
+Trey Murphy III,NOP,SF,12.8,4.0,1.5,0.6,0.4,2.4,44.8,78.3
+Immanuel Quickley,NYK,PG,13.5,2.6,2.8,0.8,0.1,1.9,41.2,83.7
+Desmond Bane,MEM,SG,20.1,3.4,3.0,0.9,0.2,3.0,45.0,90.4
