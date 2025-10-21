@@ -1,1 +1,38 @@
+name: Daily Fantasy NBA Update
 
+on:
+  schedule:
+    # Runs daily at 21:00 UTC (that's 8am Sydney during AEDT/UTC+11; adjust if needed)
+    - cron: '0 21 * * *'
+  workflow_dispatch:
+
+jobs:
+  run:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v3
+
+      - name: Set up Python
+        uses: actions/setup-python@v4
+        with:
+          python-version: '3.11'
+
+      - name: Install dependencies
+        run: |
+          python -m pip install --upgrade pip
+          pip install pandas numpy requests gspread oauth2client slack_sdk
+
+      - name: Write Google credentials
+        # GOOGLE_SHEETS_JSON secret contains the entire JSON contents
+        run: echo "${{ secrets.GOOGLE_SHEETS_JSON }}" > gcreds.json
+
+      - name: Run daily script
+        env:
+          SLACK_TOKEN: ${{ secrets.SLACK_TOKEN }}
+          ESPN_S2: ${{ secrets.ESPN_S2 }}
+          ESPN_SWID: ${{ secrets.ESPN_SWID }}
+          GOOGLE_SHEETS_JSON: ${{ secrets.GOOGLE_SHEETS_JSON }}
+          LEAGUE_ID: "285626"
+          SLACK_CHANNEL: "#all-nba-fantasy-bot"
+        run: |
+          python daily_update.py
