@@ -294,7 +294,12 @@ def post_to_slack(text):
 def main():
     print("[INFO] Starting daily_update.py")
     # Load projections
-    proj_df = load_projections(PROJ_CSV)
+    # Read projections directly from Google Sheets
+proj_df = read_sheet_to_df(sh, "projections")
+if proj_df.empty:
+    print("[WARN] Projections sheet empty, check 'projections' tab in Google Sheets.")
+else:
+    print(f"[INFO] Loaded projections from Google Sheets: {len(proj_df)} rows")
     if proj_df.empty:
         print("[WARN] Projections are empty. Please provide player_projections.csv in repo.")
     else:
