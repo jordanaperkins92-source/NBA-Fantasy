@@ -16,7 +16,15 @@ CATS = ["PTS", "REB", "AST", "STL", "BLK", "3PM", "FG%", "FT%"]
 # --- GOOGLE SHEETS AUTH ---
 def connect_to_sheet():
     scope = ["https://spreadsheets.google.com/feeds", "https://www.googleapis.com/auth/drive"]
-    creds = Credentials.from_service_account_file("credentials.json", scopes=scope)
+    import json
+
+# Load credentials from GitHub Secrets (stringified JSON)
+google_creds_json = os.getenv("GOOGLE_CREDENTIALS")
+if not google_creds_json:
+    raise ValueError("Missing GOOGLE_CREDENTIALS secret in GitHub.")
+
+creds_dict = json.loads(google_creds_json)
+creds = Credentials.from_service_account_info(creds_dict, scopes=scope)
     client = gspread.authorize(creds)
     return client.open(SHEET_NAME)
 
